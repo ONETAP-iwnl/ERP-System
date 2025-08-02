@@ -27,6 +27,11 @@ namespace WebAPIManagement.Repository
             return true;
         }
 
+        public async Task<IEnumerable<ReceiptResource>> GetAllReceiptResource()
+        {
+            return await _context.ReceiptResources.ToListAsync();        
+        }
+
         public async Task<IEnumerable<ReceiptResource>> GetByDocumentIdAsync(int receiptDocumentId)
         {
             return await _context.ReceiptResources.Where(x => x.ReceiptDocumentId == receiptDocumentId).ToListAsync();
