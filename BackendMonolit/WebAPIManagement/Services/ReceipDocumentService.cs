@@ -12,11 +12,13 @@ namespace WebAPIManagement.Services
     {
         private readonly IReceiptDocumentRepository _receiptDocumentRepository;
         private readonly IReceiptResourceRepository _receiptResourceRepository;
+       private readonly IUnitRepository _unitRepository;
 
-        public ReceipDocumentService(IReceiptDocumentRepository receiptDocumentRepository, IReceiptResourceRepository receiptResourceRepository)
+        public ReceipDocumentService(IReceiptDocumentRepository receiptDocumentRepository, IReceiptResourceRepository receiptResourceRepository, IUnitRepository unitRepository)
         {
             _receiptDocumentRepository = receiptDocumentRepository;
             _receiptResourceRepository = receiptResourceRepository;
+            _unitRepository = unitRepository;
         }
 
         /// <summary>
