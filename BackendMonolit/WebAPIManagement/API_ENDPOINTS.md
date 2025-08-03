@@ -276,52 +276,6 @@
 }
 ```
 
-### WarehouseInventoryDto
-```json
-{
-  "resourceId": 1,
-  "resourceName": "Название ресурса",
-  "resourceStatus": "Активный",
-  "totalReceipts": 1000.5,
-  "totalShipments": 500.0,
-  "currentStock": 500.5
-}
-```
-
-### ResourceInventoryDetailsDto
-```json
-{
-  "resource": {
-    "id": 1,
-    "name": "Название ресурса",
-    "isActive": true
-  },
-  "summary": {
-    "totalReceipts": 1000.5,
-    "totalShipments": 500.0,
-    "currentStock": 500.5
-  },
-  "receipts": [
-    {
-      "documentId": 1,
-      "documentNumber": "ПОСТ-001",
-      "documentDate": "2024-01-01",
-      "quantity": 100.5,
-      "unitName": "шт"
-    }
-  ],
-  "shipments": [
-    {
-      "documentId": 2,
-      "documentNumber": "ОТГР-001",
-      "documentDate": "2024-01-02",
-      "quantity": 50.0,
-      "unitName": "шт"
-    }
-  ]
-}
-```
-
 ### ReferenceDataDto
 ```json
 {
