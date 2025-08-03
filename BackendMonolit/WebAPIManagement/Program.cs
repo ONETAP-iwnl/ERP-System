@@ -1,6 +1,10 @@
 
 using Microsoft.EntityFrameworkCore;
+using WebAPIManagement.Interface.Repository;
+using WebAPIManagement.Interface.Service;
 using WebAPIManagement.Models;
+using WebAPIManagement.Repository;
+using WebAPIManagement.Services;
 
 namespace WebAPIManagement
 {
@@ -15,6 +19,18 @@ namespace WebAPIManagement
             builder.Services.AddDbContext<ErpSystemContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.AddControllers();
+
+            // репозитории
+            builder.Services.AddScoped<IUnitRepository, UnitRepository>();
+            builder.Services.AddScoped<IResourcesRepository, ResourcesRepository>();
+            builder.Services.AddScoped<IReceiptDocumentRepository, ReceiptDocumentRepository>();
+            builder.Services.AddScoped<IReceiptResourceRepository, ReceiptResourceRepository>();
+
+            // сервисы
+            builder.Services.AddScoped<IUnitService, UnitService>();
+            builder.Services.AddScoped<IResourceService, ResourceService>();
+            builder.Services.AddScoped<IReceipDocumentService, ReceipDocumentService>();
+            builder.Services.AddScoped<IReceiptResourceService, ReceiptResourceService>();
 
             var app = builder.Build();
 
