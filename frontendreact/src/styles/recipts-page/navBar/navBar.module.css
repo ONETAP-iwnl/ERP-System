@@ -1,0 +1,47 @@
+.navBar {
+    width: 250px;
+    height: 100vh;
+    position: sticky;
+    box-sizing: border-box;
+    background: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+}
+
+.navItem{
+    color: #d7d7d7;
+    border-radius: 4px;
+    height: 3rem;
+    display: flex;
+    line-height: 3rem;
+    display: block;
+}
+
+.TextHeader{
+    width: 20px;
+    height: 20px;
+    padding-left: 20px;
+    color: white;
+    font-size: calc(1.275rem + .3vw);
+    display: block;
+    margin-bottom: 20px;
+}
+
+.navLink{
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    padding-left: 10px;
+    font-size: 16px;
+    color: #0d6efd;
+    display: block;
+    border: 0;
+    font-size: 18px;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+}
+
+.navItem a:hover{
+    background-color: rgba(255,255,255,0.1);
+    color: white;
+}
+
+.navItem a:active{
+    background-color: rgba(255,255,255,0.37);
+    color: white;
+}
