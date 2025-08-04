@@ -80,3 +80,37 @@
 .addButton:hover {
     background-color: #157347;
 }
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 30px;
+  background-color: #1e1e1e;
+  color: white;
+}
+
+.table th, .table td {
+  border: 1px solid #333;
+  padding: 10px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #2d2d2d;
+  font-weight: bold;
+}
+
+.table tr {
+  transition: background-color 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.table tr:hover {
+  background-color: #333;
+}
+
+.buttonGroup {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}

@@ -2,8 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import styles from '@/styles/recipts-page/hero/hero.module.css'
-
+import styles from '@/styles/recipts-page/hero/hero.module.css';
 
 export default function Hero() {
     const router = useRouter();
@@ -13,13 +12,16 @@ export default function Hero() {
     const [selectedResources, setSelectedResources] = useState<string[]>([]);
     const [selectedUnits, setSelectedUnits] = useState<string[]>([]);
 
-
-    /* ЗАГЛУШКА УБРАТЬ ЕЕ!! */
     const receiptNumbers = [';', '125151', '1', '676', '888', '4679'];
     const resources = ['Ноутбуки111', 'рргрл', 'новый ресурс', 'Ресурс12'];
     const units = ['кг', 'литр', 'Amogus'];
 
-    return(
+    const mockReceipts = [
+        { id: 1, number: '125151', date: '2025-07-30', resource: 'Ноутбуки111', unit: 'кг', quantity: 6 },
+        { id: 2, number: '888', date: '2025-08-01', resource: 'Ресурс12', unit: 'шт', quantity: 3 },
+    ];
+
+    return (
         <main className={styles.mainContainer}>
             <h1 className={styles.headerText}>Поступления</h1>
 
@@ -80,8 +82,32 @@ export default function Hero() {
                 </select>
             </div>
 
-            <button className={styles.acceptButton}>Применить</button>
-            <button className={styles.addButton} onClick={() => router.push('/receipts/create')}>Добавить</button>
+            <div className={styles.buttonGroup}>
+                <button className={styles.acceptButton}>Применить</button>
+                <button className={styles.addButton} onClick={() => router.push('/receipts/create')}>Добавить</button>
+            </div>
+            <table className={styles.table}>
+                <thead>
+                    <tr>
+                        <th>Номер</th>
+                        <th>Дата</th>
+                        <th>Ресурс</th>
+                        <th>Ед. изм.</th>
+                        <th>Кол-во</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {mockReceipts.map(receipt => (
+                        <tr key={receipt.id} onClick={() => router.push(`/receipt-page/${receipt.id}`)}>
+                            <td>{receipt.number}</td>
+                            <td>{receipt.date}</td>
+                            <td>{receipt.resource}</td>
+                            <td>{receipt.unit}</td>
+                            <td>{receipt.quantity}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </main>
-    )
+    );
 }
