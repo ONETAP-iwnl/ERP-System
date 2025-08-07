@@ -32,6 +32,16 @@ namespace WebAPIManagement
             builder.Services.AddScoped<IReceipDocumentService, ReceipDocumentService>();
             builder.Services.AddScoped<IReceiptResourceService, ReceiptResourceService>();
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", policy =>
+                {
+                    policy.AllowAnyOrigin()
+                          .AllowAnyMethod()
+                          .AllowAnyHeader();
+                });
+            });
+
             var app = builder.Build();
 
             if (app.Environment.IsDevelopment())
@@ -39,7 +49,7 @@ namespace WebAPIManagement
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            app.UseCors("AllowAll");
             app.UseHttpsRedirection();
 
             app.MapControllers();

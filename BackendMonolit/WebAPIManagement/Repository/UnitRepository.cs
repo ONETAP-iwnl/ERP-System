@@ -50,9 +50,17 @@ namespace WebAPIManagement.Repository
 
         public async Task<Unit> UpdateUnitAsync(Unit updatedUnit)
         {
-            _context.Units.Update(updatedUnit);
+            var existing = await _context.Units.FindAsync(updatedUnit.Id);
+            if (existing == null)
+                throw new InvalidOperationException("Единица измерения не найдена.");
+
+            // Обновить нужные поля у существующей сущности
+            existing.Name = updatedUnit.Name;
+            existing.IsActive = updatedUnit.IsActive;
+
             await _context.SaveChangesAsync();
-            return updatedUnit;
+
+            return existing;
         }
     }
 }
