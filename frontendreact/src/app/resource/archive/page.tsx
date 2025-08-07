@@ -1,4 +1,4 @@
-import Hero from "@/components/unit/archive/hero";
+import Hero from "@/components/resource/archive/hero/hero";
 
 export default function Archive() {
   return (

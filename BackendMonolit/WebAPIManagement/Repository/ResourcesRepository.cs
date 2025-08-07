@@ -53,9 +53,15 @@ namespace WebAPIManagement.Repository
 
         public async Task<Resource> UpdateResourceAsync(Resource updatedResource)
         {
-            _context.Resources.Update(updatedResource);
+            var existing = await _context.Resources.FindAsync(updatedResource.Id);
+            if (existing == null)
+                throw new InvalidOperationException("Ресурс не найден.");
+            existing.Name = updatedResource.Name;
+            existing.IsActive = updatedResource.IsActive;
+
             await _context.SaveChangesAsync();
-            return updatedResource;
+
+            return existing;
         }
     }
 }

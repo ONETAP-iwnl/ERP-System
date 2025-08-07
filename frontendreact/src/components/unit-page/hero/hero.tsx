@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import styles from "@/styles/recipts-page/hero/hero.module.css"
-import { getUnits } from '@/services/api/receiptClient';
+import { getUnits } from '@/services/api/unitClient';
 
 interface Unit{
     id:number;

@@ -1,10 +1,15 @@
 import Hero from "@/components/resource/edit/hero/hero"
 
-export default function EditResource()
+interface EditResourceProps {
+  params: { id: string };
+}
+
+export default function EditResource({ params }: EditResourceProps)
 {
+    console.log("EditResource params:", params);
     return(
         <div>
-            <Hero/>
+            <Hero id={params.id} />
         </div>
     )
 }

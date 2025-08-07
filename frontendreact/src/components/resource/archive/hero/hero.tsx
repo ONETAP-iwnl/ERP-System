@@ -1,13 +1,32 @@
 'use client'
 
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from "@/styles/recipts-page/hero/hero.module.css"
+import { getInactiveResources } from '@/services/api/resourceClient';
+
+interface Resource{
+    id:number;
+    name:string;
+}
+
 
 export default function Hero() {
   const router = useRouter();
-  const mockArchiveResources = [
-    {id:1, resourceName:'ящикf'}
-  ]
+  const [archiveResources, setArchiveResources] = useState<Resource[]>([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const data = await getInactiveResources();
+        setArchiveResources(data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    fetchData();
+  }, []);
   return (
     <main className={styles.mainContainer}>
         <h1 className={styles.headerText}>Ресурсы</h1>
@@ -21,9 +40,9 @@ export default function Hero() {
             </tr>
           </thead>
           <tbody>
-            {mockArchiveResources.map(archiveResources => (
-              <tr key={archiveResources.id} onClick={() => router.push(`/edit-archiveresource/${archiveResources.id}`)}>
-                <td>{archiveResources.resourceName}</td>
+            {archiveResources.map(resource => (
+              <tr key={resource.id} onClick={() => router.push(`/edit-archiveresource/${resource.id}`)}>
+                <td>{resource.name}</td>
               </tr>
             ))}
           </tbody>

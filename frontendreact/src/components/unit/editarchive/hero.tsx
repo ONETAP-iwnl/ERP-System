@@ -58,7 +58,7 @@ export default function EditArchiveUnit() {
 
   return (
     <main className={styles.mainContainer}>
-      <h1 className={styles.headerText}>Единица измерения (архив)</h1>
+      <h1 className={styles.headerText}>Единица измерения</h1>
 
       {error && <p style={{color:'red'}}>{error}</p>}
 

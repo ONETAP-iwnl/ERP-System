@@ -68,3 +68,9 @@ export async function deleteUnit(id: number) {
     throw new Error('Ошибка при удалении единицы измерения');
   }
 }
+
+export async function getUnits(): Promise<{ id: number; name: string }[]> {
+  const res = await fetch(`${BASE_URL}/Units`, { cache: 'no-store' });
+  if (!res.ok) throw new Error('Ошибка загрузки единиц измерения');
+  return res.json();
+}

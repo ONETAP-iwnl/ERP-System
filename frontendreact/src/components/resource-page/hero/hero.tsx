@@ -1,14 +1,35 @@
 'use client'
 
 import { useRouter } from 'next/navigation';
-import { useState } from "react"
+import { useEffect, useState } from 'react';
 import styles from "@/styles/recipts-page/hero/hero.module.css"
+import { getResources } from '@/services/api/resourceClient';
+
+interface Resource {
+  id: number;
+  name: string;
+  isActive: boolean;
+};
 
 export default function Hero() {
     const router = useRouter();
-    const mockResources = [
-        {id:1, resourceName:'Ноутбуки111'}
-    ]
+    const [resource, setResource] = useState<Resource[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        async function fetchResource() {
+            try {
+                const data = await getResources();
+                setResource(data);
+            } catch(error) {
+                console.error('Ошибка при загрузке ресурсов:', error);
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchResource();
+    }, []);
+
     return(
         <main className={styles.mainContainer}>
             <h1 className={styles.headerText}>Ресурсы</h1>
@@ -23,9 +44,9 @@ export default function Hero() {
                     </tr>
                 </thead>
                 <tbody>
-                    {mockResources.map(resources=> (
+                    {resource.map(resources=> (
                         <tr key={resources.id} onClick={() => router.push(`/edit-resource/${resources.id}`)}>
-                            <td>{resources.resourceName}</td>
+                            <td>{resources.name}</td>
                         </tr>
                     ))}
                 </tbody>
