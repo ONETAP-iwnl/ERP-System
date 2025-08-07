@@ -36,6 +36,16 @@
 .dateStart {
     background-color: #333;
     color: white;
+    width: 100%;
+    border: 1px solid #555;
+    border-radius: 4px;
+    padding: 8px;
+}
+
+.inputNumber {
+    background-color: #333;
+    color: white;
+    width: 30%;
     border: 1px solid #555;
     border-radius: 4px;
     padding: 8px;
@@ -66,8 +76,32 @@
     background-color: #0b5ed7;
 }
 
+.deleteButton {
+      background-color: red;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 16px;
+      margin-right: 12px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+}
+
+
 .addButton {
     background-color: #198754;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.archiveButton {
+    background-color: #ffc107;
     border: none;
     color: white;
     padding: 10px 20px;
@@ -91,7 +125,7 @@
 
 .table th, .table td {
   border: 1px solid #333;
-  padding: 10px;
+  padding: auto;
   text-align: left;
 }
 

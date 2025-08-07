@@ -98,7 +98,7 @@ export default function Hero() {
                 </thead>
                 <tbody>
                     {mockReceipts.map(receipt => (
-                        <tr key={receipt.id} onClick={() => router.push(`/receipt-page/${receipt.id}`)}>
+                        <tr key={receipt.id} onClick={() => router.push(`/receipts-page/${receipt.id}`)}>
                             <td>{receipt.number}</td>
                             <td>{receipt.date}</td>
                             <td>{receipt.resource}</td>
