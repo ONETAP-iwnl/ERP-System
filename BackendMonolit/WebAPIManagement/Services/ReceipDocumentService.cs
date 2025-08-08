@@ -24,13 +24,7 @@ namespace WebAPIManagement.Services
         /// </summary>
         public async Task<IEnumerable<ReceiptDocument>> GetAllDocumentsWithResourcesAsync()
         {
-            var documents = await _receiptDocumentRepository.GetAllDocumentsAsync();
-            foreach (var doc in documents)
-            {
-                var resources = await _receiptResourceRepository.GetByDocumentIdAsync(doc.Id);
-                doc.ReceiptResources = resources.ToList();
-            }
-            return documents;
+            return await _receiptDocumentRepository.GetAllDocumentsAsync();
         }
 
         /// <summary>
@@ -40,15 +34,7 @@ namespace WebAPIManagement.Services
         /// <returns></returns>
         public async Task<ReceiptDocument?> GetDocumentByIdWithResourcesAsync(int id)
         {
-            var document = await _receiptDocumentRepository.GetByIdAsync(id);
-            if (document == null)
-            {
-                return null;
-            }
-            
-            var resources = await _receiptResourceRepository.GetByDocumentIdAsync(document.Id);
-            document.ReceiptResources = resources.ToList();
-            return document;
+            return await _receiptDocumentRepository.GetByIdAsync(id);
         }
 
         /// <summary>

@@ -30,7 +30,7 @@ namespace WebAPIManagement.Controllers
                 {
                     Id = doc.Id,
                     Number = doc.Number,
-                    Date = doc.Date,
+                    Date = doc.Date.ToDateTime(TimeOnly.MinValue),
                     ReceiptResources = doc.ReceiptResources.Select(rr => new ReceiptResourceDto
                     {
                         Id = rr.Id,
@@ -67,7 +67,7 @@ namespace WebAPIManagement.Controllers
                 {
                     Id = document.Id,
                     Number = document.Number,
-                    Date = document.Date,
+                    Date = document.Date.ToDateTime(TimeOnly.MinValue),
                     ReceiptResources = document.ReceiptResources.Select(rr => new ReceiptResourceDto
                     {
                         Id = rr.Id,
@@ -103,17 +103,17 @@ namespace WebAPIManagement.Controllers
                 var document = new ReceiptDocument
                 {
                     Number = createDto.Number,
-                    Date = createDto.Date
+                    Date = DateOnly.FromDateTime(createDto.Date)
                 };
 
                 var createdDocument = await _receiptDocumentService.CreateDocumentAsync(document);
-                var documentDto = new ReceiptDocumentDto
-                {
-                    Id = createdDocument.Id,
-                    Number = createdDocument.Number,
-                    Date = createdDocument.Date,
-                    ReceiptResources = new List<ReceiptResourceDto>()
-                };
+                                 var documentDto = new ReceiptDocumentDto
+                 {
+                     Id = createdDocument.Id,
+                     Number = createdDocument.Number,
+                     Date = createdDocument.Date.ToDateTime(TimeOnly.MinValue),
+                     ReceiptResources = new List<ReceiptResourceDto>()
+                 };
                 return CreatedAtAction(nameof(GetReceiptDocument), new { id = documentDto.Id }, documentDto);
             }
             catch (InvalidOperationException ex)
@@ -148,17 +148,17 @@ namespace WebAPIManagement.Controllers
                 {
                     Id = updateDto.Id,
                     Number = updateDto.Number,
-                    Date = updateDto.Date
+                    Date = DateOnly.FromDateTime(updateDto.Date)
                 };
 
                 var updatedDocument = await _receiptDocumentService.UpdateDocumentAsync(document);
-                var documentDto = new ReceiptDocumentDto
-                {
-                    Id = updatedDocument.Id,
-                    Number = updatedDocument.Number,
-                    Date = updatedDocument.Date,
-                    ReceiptResources = new List<ReceiptResourceDto>()
-                };
+                                 var documentDto = new ReceiptDocumentDto
+                 {
+                     Id = updatedDocument.Id,
+                     Number = updatedDocument.Number,
+                     Date = updatedDocument.Date.ToDateTime(TimeOnly.MinValue),
+                     ReceiptResources = new List<ReceiptResourceDto>()
+                 };
                 return Ok(documentDto);
             }
             catch (InvalidOperationException ex)
@@ -210,7 +210,7 @@ namespace WebAPIManagement.Controllers
                 {
                     Id = doc.Id,
                     Number = doc.Number,
-                    Date = doc.Date,
+                    Date = doc.Date.ToDateTime(TimeOnly.MinValue),
                     ReceiptResources = doc.ReceiptResources.Select(rr => new ReceiptResourceDto
                     {
                         Id = rr.Id,
@@ -257,7 +257,7 @@ namespace WebAPIManagement.Controllers
                 {
                     Id = doc.Id,
                     Number = doc.Number,
-                    Date = doc.Date,
+                    Date = doc.Date.ToDateTime(TimeOnly.MinValue),
                     ReceiptResources = doc.ReceiptResources.Select(rr => new ReceiptResourceDto
                     {
                         Id = rr.Id,

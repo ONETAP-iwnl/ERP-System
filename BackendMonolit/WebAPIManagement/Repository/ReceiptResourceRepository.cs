@@ -29,17 +29,27 @@ namespace WebAPIManagement.Repository
 
         public async Task<IEnumerable<ReceiptResource>> GetAllReceiptResource()
         {
-            return await _context.ReceiptResources.ToListAsync();        
+            return await _context.ReceiptResources
+                .Include(rr => rr.Resource)
+                .Include(rr => rr.Unit)
+                .ToListAsync();        
         }
 
         public async Task<IEnumerable<ReceiptResource>> GetByDocumentIdAsync(int receiptDocumentId)
         {
-            return await _context.ReceiptResources.Where(x => x.ReceiptDocumentId == receiptDocumentId).ToListAsync();
+            return await _context.ReceiptResources
+                .Where(x => x.ReceiptDocumentId == receiptDocumentId)
+                .Include(rr => rr.Resource)
+                .Include(rr => rr.Unit)
+                .ToListAsync();
         }
 
         public async Task<ReceiptResource?> GetByIdAsync(int resourceid)
         {
-            return await _context.ReceiptResources.FindAsync(resourceid);
+            return await _context.ReceiptResources
+                .Include(rr => rr.Resource)
+                .Include(rr => rr.Unit)
+                .FirstOrDefaultAsync(rr => rr.Id == resourceid);
         }
 
         public async Task<ReceiptResource> UpdateResourceAsync(ReceiptResource updatedResource)

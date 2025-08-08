@@ -31,19 +31,36 @@ namespace WebAPIManagement.Repository
 
         public async Task<IEnumerable<ReceiptDocument>> GetAllDocumentsAsync()
         {
-            return await _context.ReceiptDocuments.ToListAsync();
+            return await _context.ReceiptDocuments
+                .Include(d => d.ReceiptResources)
+                    .ThenInclude(rr => rr.Resource)
+                .Include(d => d.ReceiptResources)
+                    .ThenInclude(rr => rr.Unit)
+                .ToListAsync();
         }
 
         public async Task<ReceiptDocument?> GetByIdAsync(int documentid)
         {
-            return await _context.ReceiptDocuments.FindAsync(documentid);
+            return await _context.ReceiptDocuments
+                .Include(d => d.ReceiptResources)
+                    .ThenInclude(rr => rr.Resource)
+                .Include(d => d.ReceiptResources)
+                    .ThenInclude(rr => rr.Unit)
+                .FirstOrDefaultAsync(d => d.Id == documentid);
         }
 
         public async Task<ReceiptDocument> UpdateDocumentAsync(ReceiptDocument updatedDocument)
         {
-            _context.ReceiptDocuments.Update(updatedDocument);
+            var existingDocument = await _context.ReceiptDocuments.FindAsync(updatedDocument.Id);
+            if (existingDocument == null)
+            {
+                throw new InvalidOperationException($"Документ с ID {updatedDocument.Id} не найден");
+            }
+            existingDocument.Number = updatedDocument.Number;
+            existingDocument.Date = updatedDocument.Date;
+
             await _context.SaveChangesAsync();
-            return updatedDocument;
+            return existingDocument;
         }
     }
 }

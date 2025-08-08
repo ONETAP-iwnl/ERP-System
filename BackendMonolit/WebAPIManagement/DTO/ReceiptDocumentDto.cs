@@ -9,7 +9,7 @@ namespace WebAPIManagement.DTO
     {
         public int Id { get; set; }
         public string Number { get; set; } = null!;
-        public DateOnly Date { get; set; }
+        public DateTime Date { get; set; }
         public List<ReceiptResourceDto> ReceiptResources { get; set; } = new List<ReceiptResourceDto>();
     }
 
@@ -19,7 +19,7 @@ namespace WebAPIManagement.DTO
     public class CreateReceiptDocumentDto
     {
         public string Number { get; set; } = null!;
-        public DateOnly Date { get; set; }
+        public DateTime Date { get; set; }
     }
 
     /// <summary>
@@ -29,7 +29,7 @@ namespace WebAPIManagement.DTO
     {
         public int Id { get; set; }
         public string Number { get; set; } = null!;
-        public DateOnly Date { get; set; }
+        public DateTime Date { get; set; }
     }
 
     /// <summary>
@@ -39,7 +39,7 @@ namespace WebAPIManagement.DTO
     {
         public int Id { get; set; }
         public string Number { get; set; } = null!;
-        public DateOnly Date { get; set; }
+        public DateTime Date { get; set; }
         public int ResourcesCount { get; set; }
         public decimal TotalQuantity { get; set; }
     }

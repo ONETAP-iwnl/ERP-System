@@ -4,21 +4,21 @@ GO
 USE ERP_System;
 GO
 
---едхмхжю хглепемхъ
+--О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 CREATE TABLE Unit (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     Name NVARCHAR(100) NOT NULL,
     IsActive BIT NOT NULL DEFAULT 1
 );
 
---пеяспя
+--О©╫О©╫О©╫О©╫О©╫О©╫
 CREATE TABLE Resource (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     Name NVARCHAR(150) NOT NULL,
     IsActive BIT NOT NULL DEFAULT 1
 );
 
---днйслемр онярсокемхъ
+--О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 CREATE TABLE ReceiptDocument (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     Number NVARCHAR(50) NOT NULL UNIQUE,
@@ -26,7 +26,7 @@ CREATE TABLE ReceiptDocument (
 );
 
 
---пеяспя онярсокемхъ
+--О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 CREATE TABLE ReceiptResource (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     ResourceId INT NOT NULL,

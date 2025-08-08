@@ -70,7 +70,7 @@ export async function deleteUnit(id: number) {
 }
 
 export async function getUnits(): Promise<{ id: number; name: string }[]> {
-  const res = await fetch(`${BASE_URL}/Units`, { cache: 'no-store' });
+  const res = await fetch(`${BASE_URL}/units`, { cache: 'no-store' });
   if (!res.ok) throw new Error('Ошибка загрузки единиц измерения');
   return res.json();
 }

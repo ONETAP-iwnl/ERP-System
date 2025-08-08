@@ -20,13 +20,13 @@ namespace WebAPIManagement
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.AddControllers();
 
-            // �����������
+            // Репозитории
             builder.Services.AddScoped<IUnitRepository, UnitRepository>();
             builder.Services.AddScoped<IResourcesRepository, ResourcesRepository>();
             builder.Services.AddScoped<IReceiptDocumentRepository, ReceiptDocumentRepository>();
             builder.Services.AddScoped<IReceiptResourceRepository, ReceiptResourceRepository>();
 
-            // �������
+            // Сервисы
             builder.Services.AddScoped<IUnitService, UnitService>();
             builder.Services.AddScoped<IResourceService, ResourceService>();
             builder.Services.AddScoped<IReceipDocumentService, ReceipDocumentService>();
@@ -43,6 +43,19 @@ namespace WebAPIManagement
             });
 
             var app = builder.Build();
+            using (var scope = app.Services.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<ErpSystemContext>();
+                try
+                {
+                    context.Database.EnsureCreated();
+                    Console.WriteLine("База данных успешно создана или уже существует.");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Ошибка при создании базы данных: {ex.Message}");
+                }
+            }
 
             if (app.Environment.IsDevelopment())
             {
